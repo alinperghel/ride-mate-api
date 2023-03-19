@@ -10,6 +10,7 @@ namespace RideMateApi
 
         public DbSet<User> Users { get; set; }
         public DbSet<Ride> Rides { get; set; }
+        public DbSet<RidePassager> RidePassagers { get; set; }
     }
 }
 
