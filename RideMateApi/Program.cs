@@ -6,7 +6,32 @@ builder.Services.AddDbContext<RideMateDbContext>(opt => opt.UseInMemoryDatabase(
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/", async (RideMateDbContext db) => {
+    var user = new User();
+    user.Email = "client@ridemate.com";
+    user.Name = "Client";
+    user.Password = "parola";
+
+    var driver = new User();
+    driver.Email = "driver@ridemate.com";
+    driver.Name = "Driver";
+    driver.Password = "parola";
+
+    db.Users.Add(user);
+    db.Users.Add(driver);
+
+    var ride1 = new Ride();
+    ride1.AvailableSeats = 1;
+    ride1.DriverId = driver.Id;
+    ride1.SourceId = 1;
+    ride1.DestinationId = 3;
+
+    db.Rides.Add(ride1);
+
+    await db.SaveChangesAsync();
+
+    return Results.Ok("Hello world!");
+});
 
 app.MapGet("/rides", async (RideMateDbContext db) =>
     await db.Rides.ToListAsync());
@@ -33,6 +58,24 @@ app.MapPost("/register", async (User userInput, RideMateDbContext db) =>
     await db.SaveChangesAsync();
 
     return Results.Created($"/user/{userInput.Id}", userInput);
+});
+
+app.MapPost("/login", (User userInput, RideMateDbContext db) =>
+{
+    User user;
+    try {
+        user = db.Users.Where(t => t.Email == userInput.Email).First();
+    } catch {
+        return Results.NotFound();
+    }
+    
+
+    if (user.Password != userInput.Password)
+    {
+        return Results.NotFound();
+    }
+
+    return Results.Ok(user);
 });
 
 app.MapGet("/rides/{id}", async (int id, RideMateDbContext db) =>
@@ -77,4 +120,3 @@ app.MapGet("/user/bookings/{id}", async (int userId, RideMateDbContext db) =>
 );
 
 app.Run();
-

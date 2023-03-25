@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1705.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RideMateApi", "RideMateApi\RideMateApi.csproj", "{C42BC20F-475B-42EF-99E9-9774F136AF51}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{23AF42A5-158D-4270-BA24-DC72B237017F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C42BC20F-475B-42EF-99E9-9774F136AF51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C42BC20F-475B-42EF-99E9-9774F136AF51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C42BC20F-475B-42EF-99E9-9774F136AF51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23AF42A5-158D-4270-BA24-DC72B237017F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23AF42A5-158D-4270-BA24-DC72B237017F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23AF42A5-158D-4270-BA24-DC72B237017F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23AF42A5-158D-4270-BA24-DC72B237017F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
